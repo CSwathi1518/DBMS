@@ -1,0 +1,189 @@
+mysql> create database library;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use library;
+Database changed
+mysql> create table book(
+    -> bookid int,
+    -> title varchar(10),
+    -> publishername varchar(10),
+    -> pubyear int);
+Query OK, 0 rows affected (0.02 sec)
+mysql> insert into book values(1,'dbms','swathi',2017);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book (bookid,title,publishername,pubyear)
+    -> values(1,'dbms','swathi',2017),(1,'navya','navya',2018),(3,'sweet','sushma',2011);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from book;
++--------+-------+---------------+---------+
+| bookid | title | publishername | pubyear |
++--------+-------+---------------+---------+
+|      1 | dbms  | swathi        |    2017 |
+|      1 | dbms  | swathi        |    2017 |
+|      1 | navya | navya         |    2018 |
+|      3 | sweet | sushma        |    2011 |
++--------+-------+---------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> insert into book (bookid,title,publishername,pubyear)
+    -> values(1,'dbms','swathi',2017),(2,'navya','navya',2018),(3,'sweet','sushma',2011);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from book;
++--------+-------+---------------+---------+
+| bookid | title | publishername | pubyear |
++--------+-------+---------------+---------+
+|      1 | dbms  | swathi        |    2017 |
+|      1 | dbms  | swathi        |    2017 |
+|      1 | navya | navya         |    2018 |
+|      3 | sweet | sushma        |    2011 |
+|      1 | dbms  | swathi        |    2017 |
+|      2 | navya | navya         |    2018 |
+|      3 | sweet | sushma        |    2011 |
++--------+-------+---------------+---------+
+7 rows in set (0.00 sec)
+
+mysql> insert into book (bookid,title,publishername,pubyear)
+    -> values(1,'dbms','swathi',2017),(1,'navya','nava',2018),(3,'sweet','sushma',2011);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from book;
++--------+-------+---------------+---------+
+| bookid | title | publishername | pubyear |
++--------+-------+---------------+---------+
+|      1 | dbms  | swathi        |    2017 |
+|      1 | dbms  | swathi        |    2017 |
+|      1 | navya | navya         |    2018 |
+|      3 | sweet | sushma        |    2011 |
+|      1 | dbms  | swathi        |    2017 |
+|      2 | navya | navya         |    2018 |
+|      3 | sweet | sushma        |    2011 |
+|      1 | dbms  | swathi        |    2017 |
+|      1 | navya | nava          |    2018 |
+|      3 | sweet | sushma        |    2011 |
++--------+-------+---------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> trunc table book;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'trunc table book' at line 1
+mysql> turncate table book;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'turncate table book' at line 1
+mysql> truncate table book;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into book (bookid,title,publishername,pubyear)
+    -> values(1,'dbms','swathi',2017),(2,'navya','navy',2018),(3,'sweet','sushma',2011);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from book;
++--------+-------+---------------+---------+
+| bookid | title | publishername | pubyear |
++--------+-------+---------------+---------+
+|      1 | dbms  | swathi        |    2017 |
+|      2 | navya | navy          |    2018 |
+|      3 | sweet | sushma        |    2011 |
++--------+-------+---------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> use library;
+Database changed
+mysql> create table bookauthors(
+    -> bookid int,
+    -> authorname varchar(10));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into bookauthors(bookid,authorname)
+    -> values(1,'swathi'),(2,'navya'),(3,'sushma');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from bookauthors;
++--------+------------+
+| bookid | authorname |
++--------+------------+
+|      1 | swathi     |
+|      2 | navya      |
+|      3 | sushma     |
++--------+------------+
+3 rows in set (0.00 sec)
+
+mysql> use library;
+Database changed
+mysql> create table publisher(
+    -> name varchar(10),
+    -> address varchar(20),
+    -> phoneno int(10));
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> insert into publisher(name,address,phoneno)
+    -> values('swathi','xxxx',1234),('navya','yyyy',3456),('sushma','zzzz',5678);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from publisher;
++--------+---------+---------+
+| name   | address | phoneno |
++--------+---------+---------+
+| swathi | xxxx    |    1234 |
+| navya  | yyyy    |    3456 |
+| sushma | zzzz    |    5678 |
++--------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> use library;
+Database changed
+mysql> create table bookcopies(
+    -> bookid int,
+    -> branchid int,
+    -> noofcopies int);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into bookcopies(bookid,branchid,noofcopies)
+    -> values(1,12,4),(2,12,3),(3,13,5);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from bookcopies;
++--------+----------+------------+
+| bookid | branchid | noofcopies |
++--------+----------+------------+
+|      1 |       12 |          4 |
+|      2 |       12 |          3 |
+|      3 |       13 |          5 |
++--------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> use library;
+Database changed
+mysql> create table booklending(
+    -> bookid int,
+    -> branchid int,
+    -> cardno int,
+    -> dateout date,
+    -> duedate date);
+Query OK, 0 rows affected (0.02 sec)
+mysql> insert into book values(1,'dbms','swathi',2017);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into book (bookid,title,publishername,pubyear)
+    -> values(1,'dbms','swathi',2017),(1,'navya','navya',2018),(3,'sweet','sushma',2011);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from book;
++--------+-------+---------------+---------+
+| bookid | title | publishername | pubyear |
++--------+-------+---------------+---------+
+|      1 | dbms  | swathi        |    2017 |
+|      1 | dbms  | swathi        |    2017 |
+|      1 | navya | navya         |    2018 |
+|      3 | sweet | sushma        |    2011 |
++--------+-------+---------------+---------+
+4 rows in set (0.00 sec)
+
